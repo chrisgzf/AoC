@@ -1,0 +1,1 @@
+print(sum(map(lambda x: int(int(x.strip()) / 3) - 2, open("Day01_Input").readlines())))
