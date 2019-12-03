@@ -46,6 +46,7 @@ step = 0
 for move in wire1:
     direction, length = move[0], int(move[1:])
     for i in range(length):
+        step += 1
         if direction == "U":
             ycursor += 1
         elif direction == "D":
@@ -54,7 +55,8 @@ for move in wire1:
             xcursor -= 1
         elif direction == "R":
             xcursor += 1
-        board[ycursor][xcursor] = (step := step + 1)
+        prev_val = board[ycursor][xcursor]
+        board[ycursor][xcursor] = step if prev_val == 0 else prev_val
 
 # second wire, find intersections
 min_step = math.inf
