@@ -42,6 +42,7 @@ while i < len(prog):
         i += 2
     elif op == 4:
         inst_input = prog[prog[i + 1]]
+        print(prog[prog[i + 1]])
         i += 2
     elif op == 5:
         input1 = prog[i + 1]
@@ -90,5 +91,5 @@ while i < len(prog):
         print(f"{op} fuuuck")
         exit(0)
 
-    print(inst_input)
-print(inst_input)
+#     print(inst_input)
+# print(inst_input)
