@@ -5,7 +5,7 @@ with open("Day16_Input") as f:
 
 signal *= 10000
 offset = int(signal[:7])
-second_half = signal[int(len(signal)/2):]
+needed_digits = signal[offset:]
 
 def second_half_fft(signal):
     out = ""
@@ -16,7 +16,6 @@ def second_half_fft(signal):
     return out
 
 for i in tqdm(range(100)):
-    second_half = second_half_fft(second_half)
+    needed_digits = second_half_fft(needed_digits)
 
-offset -= len(second_half)
-print(second_half[offset:offset+8])
+print(needed_digits[:8])
