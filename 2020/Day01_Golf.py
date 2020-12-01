@@ -1,1 +1,1 @@
-print(list(filter(None, map(lambda x: x[0] * x[1] * x[2] if sum(x) == 2020 else None, __import__("itertools").combinations(map(int, open("Day01_Input").readlines()), 3))))[0])
+[print(a*b*c) if a+b+c == 2020 else 0 for a,b,c in __import__("itertools").combinations(map(int, open("Day01_Input").readlines()), 3)]
