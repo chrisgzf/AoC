@@ -1,1 +1,1 @@
-[print(a*b*c) if a+b+c == 2020 else 0 for a,b,c in __import__("itertools").combinations(map(int, open("Day01_Input").readlines()), 3)]
+from itertools import*;[print(a*b*c) for a,b,c in combinations(map(int,open("Day01_Input")),3) if a+b+c==2020]
