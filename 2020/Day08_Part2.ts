@@ -45,8 +45,6 @@ const program: Instruction[] = inputFile
     return { op, param: parseInt(param) };
   });
 
-const linesRun = new Set<number>();
-
 const runInstruction = (
   state: State,
   linesRun: Set<number>,
