@@ -14,14 +14,19 @@ const adapters = new Set(
 
 const outputJolt = Math.max(...Array.from(adapters)) + 3;
 
-const getJolts = (n: number): number => {
-  if (n === outputJolt) {
-    return 1;
-  }
-  if (!adapters.has(n) && n !== 0) {
-    return 0;
-  }
-  return getJolts(n + 1) + getJolts(n + 2) + getJolts(n + 3);
-};
+// dp[i] is the number of ways to get to outputJolt from i
+const dp: number[] = [];
 
-console.log(getJolts(0));
+// only 1 way to get to outputJolt from outputJolt
+dp[outputJolt] = 1;
+
+for (let i = outputJolt - 1; i >= 0; i--) {
+  if (adapters.has(i) || i === 0) {
+    const next_1 = dp[i + 1] ? dp[i + 1] : 0;
+    const next_2 = dp[i + 2] ? dp[i + 2] : 0;
+    const next_3 = dp[i + 3] ? dp[i + 3] : 0;
+    dp[i] = next_1 + next_2 + next_3;
+  }
+}
+
+console.log(dp[0]);
