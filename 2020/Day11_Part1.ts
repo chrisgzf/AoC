@@ -24,21 +24,18 @@ const directions = [
   [-1, 1],
 ];
 
-const isOccupied = (seats: string[][], y: number, x: number): number => {
+const isOccupied = (seats: string[][], y: number, x: number): boolean => {
   if (y < 0 || x < 0 || y >= nRows || x >= nCols) {
-    return -1;
+    return false;
   }
   const curr = seats[y][x];
-  if (curr === ".") {
-    return -1;
+  if (curr === "#") {
+    return true;
   }
-  if (curr === "L") {
-    return 0;
-  }
-  return 1;
+  return false;
 };
 
-function nextGen(): boolean {
+function generateNextIteration(): boolean {
   let changed = false;
   const nextSeats = new Array(nRows)
     .fill(null)
@@ -49,8 +46,7 @@ function nextGen(): boolean {
       const curr = seats[i][j];
       const numAdjacentOccupied = directions
         .map(([dx, dy]) => isOccupied(seats, i + dy, j + dx))
-        .filter((x) => x !== -1)
-        .filter((x) => x === 1).length;
+        .filter((x) => x).length;
 
       const noAdjacentOccupied = numAdjacentOccupied === 0;
       const fourOrMoreOccupied = numAdjacentOccupied >= 4;
@@ -71,7 +67,7 @@ function nextGen(): boolean {
   return changed;
 }
 
-while (nextGen()) {
+while (generateNextIteration()) {
   // seats.map((x) => x.join("")).forEach((x) => console.log(x));
   // console.log("");
 }
